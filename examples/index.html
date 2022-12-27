@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@langnang/simple-vue</title>
+  <script src="./../dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">Hello Vue</div>
+<script>
+  const vm = new Vue({
+    el: "#app",
+    data() {
+      return {
+        msg: "Vue",
+        a: {
+          b: 10,
+        },
+        list: [1, 2, 3, 4, 5],
+        arr: [{
+          a: 1,
+        }]
+      }
+    }
+  })
+  vm.a = {c: 100}
+  console.log(vm)
+</script>
+</body>
+
+</html>
