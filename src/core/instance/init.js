@@ -1,5 +1,6 @@
 import {initState} from "./state";
 import {compileToFunction} from "../../compiler/index";
+import {mountComponent} from "./lifecycle";
 
 /**
  * 混入初始化方法至 Vue 原型
@@ -29,8 +30,12 @@ export function initMixin(Vue) {
       if (!template && el) {
         el = el.outerHTML;
         // 转换为 ast 语法树
-        let ast = compileToFunction(el);
+        let render = compileToFunction(el);
+        console.log(render);
+        options.render = render;
       }
     }
+    // 挂载组件
+    mountComponent(vm, el);
   }
 }
