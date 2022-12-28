@@ -21,7 +21,6 @@ export function initMixin(Vue) {
   };
 
   Vue.prototype.$mount = function (el) {
-    // console.log(el);
     let vm = this;
     el = document.querySelector(el);// 获取元素
     vm.$el = el;
@@ -32,7 +31,6 @@ export function initMixin(Vue) {
         el = el.outerHTML;
         // 转换为 ast 语法树
         let render = compileToFunction(el);
-        console.log(render);
         options.render = render;
       }
     }

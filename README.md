@@ -48,3 +48,8 @@
 - 使用`parentNode()`获取父元素
 - `insertBefore()`添加至原节点位置
 - `removeChild()`删除原节点
+
+## 全局混入`mixin`方法
+
+- 定义策略模式`strats`
+- 合并`options`，包括生命周期

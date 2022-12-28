@@ -15,6 +15,16 @@
   <span>张三</span>
 </div>
 <script>
+  Vue.mixin({
+    created: function a() {
+      console.log(this);
+    }
+  })
+  Vue.mixin({
+    created: function b() {
+      console.log(this);
+    }
+  })
   const vm = new Vue({
     el: "#app",
     data() {
@@ -29,10 +39,13 @@
           a: 1,
         }]
       }
+    },
+    created: function c() {
+      console.log(this);
     }
   })
   // vm.a = {c: 100}
-  // console.log(vm)
+  console.log(vm)
 </script>
 </body>
 

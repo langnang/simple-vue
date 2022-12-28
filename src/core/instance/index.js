@@ -1,6 +1,7 @@
 import {initMixin} from "./init";
 import {lifecycleMixin} from "./lifecycle";
 import {renderMixin} from "./render";
+import {initGlobalAPI} from "../global-api/index";
 
 function Vue(options) {
   // new Vue 的时候就执行到了这个 _init 函数
@@ -14,5 +15,7 @@ initMixin(Vue);
 lifecycleMixin(Vue);
 // 添加_render
 renderMixin(Vue);
+// 添加全局方法
+initGlobalAPI(Vue);
 
 export default Vue;
