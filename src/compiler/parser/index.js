@@ -9,7 +9,6 @@ const doctype = /^<!DOCTYPE [^>]+>/i;
 // #7298: escape - to avoid being passed as HTML comment when inlined in page
 const comment = /^<!\--/;
 const conditionalComment = /^<!\[/;
-const defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g;// {{}}
 
 /**
  * 创建 ast 语法树
@@ -45,7 +44,7 @@ function start(tag, attrs) {
  * 文本
  */
 function chars(text) {
-  text = text.replace(/a/g, '');
+  // text = text.replace(/ /g, '');
   if (text) {
     createParent.children.push({
       type: 3,// 文本
