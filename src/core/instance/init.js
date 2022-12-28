@@ -24,6 +24,7 @@ export function initMixin(Vue) {
     // console.log(el);
     let vm = this;
     el = document.querySelector(el);// 获取元素
+    vm.$el = el;
     let options = vm.$options;
     if (!options.render) {
       let template = options.template;

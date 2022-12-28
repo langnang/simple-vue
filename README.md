@@ -36,3 +36,15 @@
 - 定义的`_c`,`_v`,`_s`方法
 - 定义创建节点方法，基于ast语法结构转换为节点属性
 - 将ast语法树转换为虚拟节点
+
+## 转换为真实DOM
+
+- 使用`document.createElement()`生成元素
+- 使用`document.createTextNode()`生成文本
+- 根据ast语法树，逐层遍历并`appendChild`追加至根节点
+
+## 放到页面上
+
+- 使用`parentNode()`获取父元素
+- `insertBefore()`添加至原节点位置
+- `removeChild()`删除原节点
