@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<div id="app">Hello Vue</div>
+<div id="app">Hello {{msg}}</div>
 <script>
   const vm = new Vue({
     el: "#app",
@@ -27,8 +27,8 @@
       }
     }
   })
-  vm.a = {c: 100}
-  console.log(vm)
+  // vm.a = {c: 100}
+  // console.log(vm)
 </script>
 </body>
 
