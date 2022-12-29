@@ -1,4 +1,5 @@
 import {patch} from "../vdom/patch";
+import Watcher from "../observer/watcher";
 
 export function lifecycleMixin(Vue) {
   Vue.prototype._update = function (vnode) {
@@ -10,7 +11,11 @@ export function lifecycleMixin(Vue) {
 
 export function mountComponent(vm, el) {
   callHook(vm, 'beforeMount');
-  vm._update(vm._render());
+  const updateComponent = () => {
+    vm._update(vm._render());
+  }
+  new Watcher(vm, updateComponent, () => {
+  }, true)
   callHook(vm, 'mounted');
 }
 

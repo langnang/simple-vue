@@ -31,7 +31,7 @@ function mergeHook(parentVal, childVal) {
 /**
  * 合并 options
  */
-export function mergeOptions(parent, child) {
+export function mergeOptions(parent = {}, child) {
   const options = {};
   for (let key in parent) {
     mergeField(key);
@@ -41,6 +41,7 @@ export function mergeOptions(parent, child) {
   }
 
   function mergeField(key) {
+    // console.log('mergeField', arguments)
     // 根据key 策略模式
     if (strats[key]) {
       options[key] = strats[key](parent[key], child[key]);
@@ -48,6 +49,7 @@ export function mergeOptions(parent, child) {
       options[key] = child[key];
     }
   }
+
   return options;
 }
 

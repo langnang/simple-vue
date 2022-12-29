@@ -36,6 +36,7 @@ methodsToPatch.forEach((item) => {
     if (inserted) {
       ob.observeArray(inserted);// 对添加的对象进行劫持
     }
+    ob.dep.notify();
     return result;
   };
 });
