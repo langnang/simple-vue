@@ -39,6 +39,9 @@
         this.list.push(10);
         this.a = {c: 10};
         this.arr.push({c: 10});
+        this.$nextTick(() => {
+          console.log(this);
+        });
       }, 2000)
       // this._update(this._render());
 

@@ -1,4 +1,5 @@
 import {popTarget, pushTarget} from "./dep";
+import {queueWatcher} from "./scheduler";
 
 let id = 0;
 
@@ -66,27 +67,5 @@ export default class Watcher {
     this.getter();
   }
 }
-let queue = [];
-let has = {};
-let waiting = false
 
-function queueWatcher(watcher) {
-  let id = watcher.id;// 每个组件都是同一个watcher
-  if (has[id] == null) {
-    // 列队处理
-    queue.push(watcher);
-    has[id] = true;
-    // 防抖：用户触发多次，只执行一次
-    if (!waiting) {
-      // 异步执行
-      setTimeout(() => {
-        queue.forEach(item => item.run());
-        queue = [];
-        has = {};
-        waiting = false;
-      })
-    }
-    waiting = true;
-  }
-}
 
