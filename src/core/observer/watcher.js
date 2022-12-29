@@ -51,12 +51,42 @@ export default class Watcher {
   get() {
     pushTarget(this);// 给 Dep 添加 Watcher
     this.getter();// 渲染页面 vm._update(vm._render())
-    popTarget(this);// 给 Dep 取消 Watcher
+    popTarget();// 给 Dep 取消 Watcher
   }
 
   // 更新
   update() {
+    // tips::不要每次更新后都调用 get 方法
+    // 缓存
+    // this.get();// 重写渲染页面
+    queueWatcher(this);
+  }
+
+  run() {
     this.getter();
+  }
+}
+let queue = [];
+let has = {};
+let waiting = false
+
+function queueWatcher(watcher) {
+  let id = watcher.id;// 每个组件都是同一个watcher
+  if (has[id] == null) {
+    // 列队处理
+    queue.push(watcher);
+    has[id] = true;
+    // 防抖：用户触发多次，只执行一次
+    if (!waiting) {
+      // 异步执行
+      setTimeout(() => {
+        queue.forEach(item => item.run());
+        queue = [];
+        has = {};
+        waiting = false;
+      })
+    }
+    waiting = true;
   }
 }
 

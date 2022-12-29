@@ -28,7 +28,7 @@ class Observer {
     Object.defineProperty(value, "__ob__", {
       enumerable: false,// 不可枚举
       value: this,// this 指向 observe
-      configurable: true,
+      configurable: true,// 控制属性描述符是否能改变
     })
     // 给所有的对象类型添加一个dep
     // this.dep = new Dep();
