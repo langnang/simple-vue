@@ -24,17 +24,33 @@ export default class Watcher {
   // 更新视图的方法
   getter;
 
-  constructor(vm, expOrFn, cb, options) {
+  constructor(vm, expOrFn, cb, options = {}) {
     this.vm = vm;
     this.expression = expOrFn;
     this.cb = cb;
     this.options = options;
+    this.user = !!options.user
     // 判断
     if (typeof this.expression === 'function') {
       this.getter = this.expression;// 用来更新视图
+    } else {
+      // console.log('Watcher.constructor', arguments)
+      // console.log('Watcher.constructor[vm.a.b]', vm.a.b)
+      this.getter = function () {// 属性
+        let path = expOrFn.split('.');
+        // console.log(vm.a.b);
+        let obj = vm;
+        // console.log(obj.a.b);
+        // console.log(path, obj);
+        for (let i = 0; i < path.length; i++) {
+          obj = obj[path[i]];
+        }
+        // console.log(obj);
+        return obj;
+      }
     }
     // 更新视图
-    this.get();
+    this.value = this.get();// 保存 watch 初始值
   }
 
   addDep(dep) {
@@ -51,8 +67,10 @@ export default class Watcher {
   // 初次渲染
   get() {
     pushTarget(this);// 给 Dep 添加 Watcher
-    this.getter();// 渲染页面 vm._update(vm._render())
+    const value = this.getter();// 渲染页面 vm._update(vm._render())
     popTarget();// 给 Dep 取消 Watcher
+
+    return value;
   }
 
   // 更新
@@ -64,7 +82,14 @@ export default class Watcher {
   }
 
   run() {
-    this.getter();
+    const value = this.get();// 新值
+    const oldValue = this.value;// 旧值
+    this.value = value;
+    // 执行 watch 的 handler(cb)
+    if (this.user) {
+      this.cb.call(this.vm, value, oldValue);
+
+    }
   }
 }
 

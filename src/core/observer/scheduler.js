@@ -7,7 +7,6 @@ let waiting = false
 function flushWatcher() {
   queue.forEach(item => {
     item.run();
-    item.cb();
   });
   queue = [];
   has = {};

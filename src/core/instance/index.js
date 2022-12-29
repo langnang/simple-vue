@@ -2,6 +2,7 @@ import {initMixin} from "./init";
 import {lifecycleMixin} from "./lifecycle";
 import {renderMixin} from "./render";
 import {initGlobalAPI} from "../global-api/index";
+import {stateMixin} from "./state";
 
 function Vue(options) {
   // new Vue 的时候就执行到了这个 _init 函数
@@ -11,6 +12,8 @@ function Vue(options) {
 
 // 添加初始化方法
 initMixin(Vue);
+// 添加
+stateMixin(Vue);
 // 添加生命周期方法
 lifecycleMixin(Vue);
 // 添加_render

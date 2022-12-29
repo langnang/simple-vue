@@ -1,4 +1,5 @@
 import {observe} from "../observer/index";
+import Watcher from "../observer/watcher";
 
 /**
  * 初始化状态，props，methods，data，computed，watch
@@ -7,6 +8,9 @@ export function initState(vm) {
   const opts = vm.$options;
   if (opts.data) {
     initDate(vm);
+  }
+  if (opts.watch) {
+    initWatch(vm);
   }
 }
 
@@ -36,4 +40,57 @@ function proxy(vm, sourceKey, key) {
       vm[sourceKey][key] = newVal;
     }
   })
+}
+
+/**
+ * 初始化 options.watch
+ */
+function initWatch(vm) {
+  // console.log('initWatch.vm', vm);
+  // 获取watch
+  let watch = vm.$options.watch;
+  // console.log('initWatch.watch', watch)
+  // 遍历
+  for (let key in watch) {
+    // 获取属性对应的值
+    let handler = watch[key];// 数组、对象、字符串、函数
+    if (Array.isArray(handler)) {// 数组
+      handler.forEach(item => {
+        createWatcher(vm, key, item);
+      });
+    } else {// 对象、字符串、函数
+      createWatcher(vm, key, handler);
+    }
+  }
+}
+
+// 格式化处理 watch 配置
+function createWatcher(vm, expOrFn, handler, options) {
+  // console.log('createWatcher', arguments);
+  // 处理 handler
+  if (typeof handler === 'object') {
+    options = handler;// 用户的配置
+    handler = handler.handler;// 函数
+  }
+  if (typeof handler === 'string') {
+    handler = vm[handler];// 将实例的方法作为handler
+  }
+  // 其它是函数
+  return vm.$watch(expOrFn, handler, options)
+}
+
+export function stateMixin(Vue) {
+  Vue.prototype.$watch = function (expOrFn, cb, options = {}) {
+    // console.log('Vue.prototype.$watch', arguments);
+    const vm = this;
+    // 判断标识：用于判断来源于用户配置的watch
+    options.user = true;
+    // console.log('Vue.prototype.$watch[vm.a]', vm.a);
+    // console.log('Vue.prototype.$watch[vm.a.b]', vm.a.b);
+    // 实现 $watch 方法，就是 new Watcher()
+    let watcher = new Watcher(vm, expOrFn, cb, options);
+    if (options.immediate) {
+      cb.call(vm);
+    }
+  }
 }
