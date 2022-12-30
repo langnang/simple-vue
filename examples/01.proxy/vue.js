@@ -43,7 +43,7 @@
     // (2). function 来源于组件
     // 判断 data 数据类型
     // 如果是 function，就执行该方法，并将其this指针指向至当前实例
-    data = vm._data = typeof data === "function" ? data.call() : data;
+    data = vm._data = typeof data === "function" ? data.call(vm) : data;
     // 遍历data属性，并将所有属性代理至实例上
     for (let key in data) {
       proxy(vm, "_data", key);
