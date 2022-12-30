@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@langnang/simple-vue</title>
+  <script src="./vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1> Proxy <small>// 数据代理</small></h1>
+  </div>
+  <script>
+    const vm01 = new Vue({
+      el: "#app",
+      data: {
+        title: "Proxy",
+        subTitle: "数据代理",
+        array: [1, 2, 3],
+        bool: false,
+        number: 123,
+        object: { a: 1, b: 2 },
+        objArray: [{ a: 1 }, { b: 2 }],
+        string: "string",
+      }
+    })
+    console.log("🚀 ~ file: index.html:30 ~ vm01", vm01)
+    const vm02 = new Vue({
+      el: "#app",
+      data() {
+        console.log("🚀 ~ file: index.html:35 ~ data ~ this", this)
+        return {
+          title: "Proxy",
+          subTitle: "数据代理",
+          array: [1, 2, 3],
+          bool: false,
+          number: 123,
+          object: { a: 1, b: 2 },
+          objArray: [{ a: 1 }, { b: 2 }],
+          string: "string",
+        }
+      }
+    })
+    console.log("🚀 ~ file: index.html:47 ~ vm02", vm02)
+
+  </script>
+</body>
+
+</html>
