@@ -1,8 +1,10 @@
-import {arrayMethods} from "./array";
+import { arrayMethods } from "./array";
 import Dep from "./dep";
-
+/**
+ * 数据劫持
+ */
 export function observe(value) {
-
+  console.log("🚀 ~ file: index.js:5 ~ observe ~ arguments", { value });
   // 判断
   if (typeof value != "object" || value == null) {
     return;
@@ -23,13 +25,14 @@ class Observer {
   dep = new Dep();
 
   constructor(value) {
+    console.log("🚀 ~ file: index.js:25 ~ Observer ~ constructor ~ arguments", { value, _self: this });
     this.value = value;
     // 给 data 定义一个属性
     Object.defineProperty(value, "__ob__", {
-      enumerable: false,// 不可枚举
-      value: this,// this 指向 observe
-      configurable: true,// 控制属性描述符是否能改变
-    })
+      enumerable: false, // 不可枚举
+      value: this, // this 指向 observe
+      configurable: true, // 控制属性描述符是否能改变
+    });
     // 给所有的对象类型添加一个dep
     // this.dep = new Dep();
     // 若为数组，则重写数组方法
@@ -66,8 +69,9 @@ class Observer {
  * 劫持对象中的其中一个属性
  */
 function defineReactive(data, key, value) {
+  console.log("🚀 ~ file: index.js:73 ~ defineReactive ~ arguments", { data, key, value });
   let childDep = observe(value); // 对子类进行深度代理
-  let dep = new Dep();// 给每个属性添加一个dep
+  let dep = new Dep(); // 给每个属性添加一个dep
   Object.defineProperty(data, key, {
     get() {
       if (Dep.target) {
