@@ -1,0 +1,22 @@
+{
+  "name": "simple-vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev",
+    "build": "vuepress build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Langnang<langnang.chen@outlook.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@xiaopanda/vuepress-plugin-code-copy": "^1.0.3",
+    "vuepress": "^1.9.8",
+    "vuepress-plugin-code-switcher": "~1.0",
+    "vuepress-plugin-flowchart": "^1.5.0",
+    "vuepress-plugin-mathjax": "^1.2.8",
+    "vuepress-plugin-mermaidjs": "1.9.1"
+  }
+}

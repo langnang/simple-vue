@@ -22,7 +22,7 @@ export function initMixin(Vue) {
     if (vm.$options.el) {
       vm.$mount(vm.$options.el);
     }
-    console.groupEnd();
+    // console.groupEnd();
   };
 
   Vue.prototype.$mount = function (el) {

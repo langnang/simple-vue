@@ -1,13 +1,53 @@
 # EditorConfig is awesome: https://EditorConfig.org
 
+##########################################
+# Common Settings
+##########################################
+
 # top-most EditorConfig file
+# A special property that should be specified at the top of the file outside of
+# any sections. Set to true to stop .editor config file search on current file
+# 表示是最顶层的配置文件，发现设为true时，才会停止查找.editorconfig文件
 root = true
 
 [*]
+# Indentation style
+# Possible values - tab, space
+# 设置缩进风格(tab是硬缩进，space为软缩进)
 indent_style = space
+
+# Indentation size in single-spaced characters
+# Possible values - an integer, tab
+# 用一个整数定义的列数来设置缩进的宽度，如果indent_style为tab，则此属性默认为 tab_width
 indent_size = 2
-end_of_line = crlf
+# tab_width = 2
+
+# Line ending file format
+# Possible values - lf, crlf, cr
+# 设置换行符，值为lf、cr和crlf
+end_of_line = lf
+
+# File character encoding
+# Possible values - latin1, utf-8, utf-16be, utf-16le
+# 设置编码，值为latin1、utf-8、utf-8-bom、utf-16be和utf-16le，不建议使用utf-8-bom
 charset = utf-8
-trim_trailing_whitespace = false
-insert_final_newline = false
-max_line_length = 360;
+
+# Denotes whether to trim whitespace at the end of lines
+# Possible values - true, false
+# 设为true表示会去除换行行首的任意空白字符。
+trim_trailing_whitespace = true
+
+# Denotes whether file should end with a newline
+# Possible values - true, false
+# 设为true表示使文件以一个空白行结尾
+insert_final_newline = true
+
+# Forces hard line wrapping after the amount of characters specified.
+# off to turn off this feature (use the editor settings).
+# 最大行宽
+max_line_width = 180
+
+
+##########################################
+# File Extension Settings
+##########################################

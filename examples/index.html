@@ -20,61 +20,61 @@
     <button id="btn">Patch</button>
     <script src="./../dist/vue.js"></script>
     <script>
-      // const vm = new Vue({
-      //   el: "#app",
-      //   data() {
-      //     return {
-      //       title: "Vue",
-      //       subTitle: "Langnang",
-      //       array: [1, 2, 3],
-      //       bool: false,
-      //       number: 123,
-      //       object: { a: 1, b: 2 },
-      //       objArray: [{ a: 1 }, { b: 2 }],
-      //       string: "string",
-      //     };
-      //   },
-      //   watch: {},
-      //   beforeCreate() {
-      //     console.log("🚀 ~ file: index.html:38 ~ beforeCreate ~ arguments", { vm: this, data: this.data });
-      //   },
-      //   created() {
-      //     console.log("🚀 ~ file: index.html:41 ~ created ~ arguments", { vm: this, data: this.data });
-      //   },
-      //   beforeMount() {
-      //     console.log("🚀 ~ file: index.html:45 ~ beforeMount ~ arguments", { vm: this, data: this.data });
-      //   },
-      //   mounted() {
-      //     console.log("🚀 ~ file: index.html:38 ~ mounted ~ arguments", { vm: this, data: this.data });
-      //     // console.log('mounted', this);
-      //     setTimeout(() => {
-      //       this.title = "React";
-      //       // this.list.push(10);
-      //       // this.arr.push({c: 10});
-      //       // this.$nextTick(() => {
-      //       // console.log(this);
-      //       // });
-      //     }, 0);
-      //     // this._update(this._render());
-      //   },
-      //   beforeUpdate() {
-      //     console.log("🚀 ~ file: index.html:62 ~ beforeUpdate ~ arguments", { vm: this, data: this.data });
-      //   },
-      //   updated() {
-      //     console.log("🚀 ~ file: index.html:65 ~ updated ~ arguments", { vm: this, data: this.data });
-      //   },
-      // });
-      // // vm.a = {c: 100}
-      // console.log(vm);
-      // setTimeout(() => {
-      //   vm.title = "React001";
-      // }, 1000);
-      // setTimeout(() => {
-      //   vm.title = "React002";
-      // }, 2000);
-      // setTimeout(() => {
-      //   vm.title = "React003";
-      // }, 3000);
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            title: "Vue",
+            subTitle: "Langnang",
+            array: [1, 2, 3],
+            bool: false,
+            number: 123,
+            object: { a: 1, b: 2 },
+            objArray: [{ a: 1 }, { b: 2 }],
+            string: "string",
+          };
+        },
+        watch: {},
+        beforeCreate() {
+          console.log("🚀 ~ file: index.html:38 ~ beforeCreate ~ arguments", { vm: this, data: this.data });
+        },
+        created() {
+          console.log("🚀 ~ file: index.html:41 ~ created ~ arguments", { vm: this, data: this.data });
+        },
+        beforeMount() {
+          console.log("🚀 ~ file: index.html:45 ~ beforeMount ~ arguments", { vm: this, data: this.data });
+        },
+        mounted() {
+          console.log("🚀 ~ file: index.html:38 ~ mounted ~ arguments", { vm: this, data: this.data });
+          // console.log('mounted', this);
+          setTimeout(() => {
+            this.title = "React";
+            // this.list.push(10);
+            // this.arr.push({c: 10});
+            // this.$nextTick(() => {
+            // console.log(this);
+            // });
+          }, 0);
+          // this._update(this._render());
+        },
+        beforeUpdate() {
+          console.log("🚀 ~ file: index.html:62 ~ beforeUpdate ~ arguments", { vm: this, data: this.data });
+        },
+        updated() {
+          console.log("🚀 ~ file: index.html:65 ~ updated ~ arguments", { vm: this, data: this.data });
+        },
+      });
+      // vm.a = {c: 100}
+      console.log(vm);
+      setTimeout(() => {
+        vm.title = "React001";
+      }, 1000);
+      setTimeout(() => {
+        vm.title = "React002";
+      }, 2000);
+      setTimeout(() => {
+        vm.title = "React003";
+      }, 3000);
     </script>
   </body>
 </html>

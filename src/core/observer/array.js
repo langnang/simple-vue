@@ -34,7 +34,7 @@ methodsToPatch.forEach((item) => {
     }
     let ob = this.__ob__;
     if (inserted) {
-      ob.observeArray(inserted);// 对添加的对象进行劫持
+      ob.observeArray(inserted); // 对添加的对象进行劫持
     }
     ob.dep.notify();
     return result;

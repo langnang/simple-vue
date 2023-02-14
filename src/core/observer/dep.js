@@ -7,29 +7,19 @@ export default class Dep {
   static target;
   // 唯一标识
   id = id++;
-  // 用数组存储订阅者(Watcher 实例)
+  // 用数组存储订阅者(Watcher 实例) subs 是 subscribes 订阅者的意思
   subs = [];
 
-  constructor() {
-    console.log("🚀 ~ file: dep.js:14 ~ Dep ~ constructor ~ constructor", {});
-    // console.log(`Dep.constructor[${this.id}]`, this)
-    // this.id = id++;
-    // 用数组存储自己的订阅者   subs 是 subscribes 订阅者的意思
-    // 这个数组里放的是 Watcher 的实例
-    // this.subs = [];
-  }
+  constructor() {}
 
-  // 收集 Watcher
-  // 添加依赖
+  // 添加依赖，收集 Watcher
   depend() {
-    // console.log(`Dep.depend[${this.id}]`, this, arguments)
-    // 将监听的目标添加进 subs 数组
     // this.subs.push(Dep.target);
     Dep.target.addDep(this);
   }
 
   addSub(watcher) {
-    // console.log(`Dep.addSub[${this.id}]`, this, arguments)
+    // 将监听的目标添加进 subs 数组
     this.subs.push(watcher);
   }
 
@@ -48,7 +38,7 @@ export default class Dep {
 export function pushTarget(watcher) {
   Dep.target = watcher;
 }
-
+// 清除 Watcher
 export function popTarget() {
   Dep.target = null;
 }

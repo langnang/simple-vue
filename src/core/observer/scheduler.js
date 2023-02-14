@@ -1,20 +1,27 @@
-import {nextTick} from "../util/next-tick";
+import { nextTick } from "../util/next-tick.js";
 
 let queue = [];
 let has = {};
-let waiting = false
+let waiting = false;
 
 function flushWatcher() {
-  queue.forEach(item => {
+  console.log("🚀 ~ file: scheduler.js:8 ~ flushWatcher ~ flushWatcher", {
+    queue,
+    has,
+    waiting,
+  });
+  // 遍历执行队列中的watcher
+  queue.forEach((item) => {
     item.run();
   });
+  // 重置变量
   queue = [];
   has = {};
   waiting = false;
 }
 
 export function queueWatcher(watcher) {
-  let id = watcher.id;// 每个组件都是同一个watcher
+  let id = watcher.id; // 每个组件都是同一个watcher
   if (has[id] == null) {
     // 列队处理
     queue.push(watcher);
@@ -28,7 +35,7 @@ export function queueWatcher(watcher) {
       //   has = {};
       //   waiting = false;
       // })
-      nextTick(flushWatcher);// nextTick 相当于定时器
+      nextTick(flushWatcher); // nextTick 相当于定时器
     }
     waiting = true;
   }

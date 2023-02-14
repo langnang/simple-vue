@@ -1,13 +1,13 @@
 import { updateRpors } from "./create-element";
 
 export function patch(oldVnode, newVnode) {
-  console.group("🚀 ~ file: patch.js:5 ~ patch ~ 修补节点 ~ arguments", { oldVnode, newVnode });
+  console.groupCollapsed("🚀 ~ file: patch.js:5 ~ patch ~ 修补节点 ~ arguments", { oldVnode, newVnode });
   // 将 vnode 转换为真实 DOM
   // 第一次 oldVnode 是个真实 DOM
   if (oldVnode.nodeType === 1) {
-    // console.log("oldVnode 是个真实 DOM");
+    console.log("oldVnode 是个真实 DOM");
     // (1) 创建新DOM
-    let el = createElm(Vnode);
+    let el = createElm(newVnode);
     // (2) 替换
     let parentEl = oldVnode.parentNode;
     parentEl.insertBefore(el, oldVnode.nextSibling);
@@ -16,7 +16,7 @@ export function patch(oldVnode, newVnode) {
     return el;
   } else {
     // diff
-    // console.log("oldVnode 不是个真实 DOM");
+    console.log("oldVnode 不是个真实 DOM");
     // 元素不一样
     if (oldVnode.tag !== newVnode.tag) {
       // console.log("新旧节点元素不一样", { oldVnodeTag: oldVnode.tag, newVnodeTag: newVnode.tag });

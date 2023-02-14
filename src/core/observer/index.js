@@ -1,5 +1,5 @@
-import { arrayMethods } from "./array";
-import Dep from "./dep";
+import { arrayMethods } from "./array.js";
+import Dep from "./dep.js";
 /**
  * 数据劫持
  */
@@ -25,7 +25,6 @@ class Observer {
   dep = new Dep();
 
   constructor(value) {
-    console.log("🚀 ~ file: index.js:25 ~ Observer ~ constructor ~ arguments", { value, _self: this });
     this.value = value;
     // 给 data 定义一个属性
     Object.defineProperty(value, "__ob__", {
@@ -65,11 +64,11 @@ class Observer {
   }
 }
 
+// #region defineReactive
 /**
  * 劫持对象中的其中一个属性
  */
 function defineReactive(data, key, value) {
-  console.log("🚀 ~ file: index.js:73 ~ defineReactive ~ arguments", { data, key, value });
   let childDep = observe(value); // 对子类进行深度代理
   let dep = new Dep(); // 给每个属性添加一个dep
   Object.defineProperty(data, key, {
@@ -88,8 +87,9 @@ function defineReactive(data, key, value) {
       if (newVal === value) return;
       observe(newVal); // 代理更新后的数据
       value = newVal;
-      // notify 切忌 val=newValue 之后，不然在 callback 回调中一直是旧值
+      // notify 切忌 val = newValue 之后，不然在 callback 回调中一直是旧值
       dep.notify();
     },
   });
 }
+// #endregion defineReactive
